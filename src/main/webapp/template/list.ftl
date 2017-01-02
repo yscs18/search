@@ -29,26 +29,26 @@
     </header>
     <div class="am-g ">
         <div class="am-u-lg-8 am-u-lg-offset-1">
-            <div data-am-widget="list_news" class="am-list-news am-list-news-default">
-                <!--列表标题-->
-                <div class="am-list-news-hd am-cf">
-                    <h2>${k}-搜索结果</h2>
-                </div>
+            <#if webPages>
+                <div data-am-widget="list_news" class="am-list-news am-list-news-default">
+                    <!--列表标题-->
+                    <div class="am-list-news-hd am-cf">
+                        <h2>${k}-搜索结果</h2>
+                    </div>
+                    <div class="am-list-news-bd">
+                        <ul class="am-list">
 
-                <div class="am-list-news-bd">
-                    <ul class="am-list">
-                        <#if webPages>
-                        	<#list webPages as webpage>
-	                        	 <li class="am-g am-list-item-desced">
-	                            	<a href="${webpage.url}" class="am-list-item-hd ">${webpage.title}</a>
-	                            	<div class="am-list-item-text">${webpage.text}</div>
-	                       		 </li>
-                        	</#list>
-                        </#if>
-                    </ul>
-                </div>
+                            <#list webPages as webpage>
+                                <li class="am-g am-list-item-desced">
+                                    <a href="${webpage.url}" target="_blank" class="am-list-item-hd ">${webpage.title}</a>
+                                    <div class="am-list-item-text">${webpage.text}</div>
+                                </li>
+                            </#list>
 
-            </div>
+                        </ul>
+                    </div>
+                </div>
+            </#if>
         </div>
     </div>
     <div class="am-g pagination" id="pagination">
@@ -75,18 +75,17 @@
     <script src="${request.contextPath}/assets/js/amazeui.min.js"></script>
     <script src="${request.contextPath}/assets/js/handlebars.min.js"></script>
     <script src="${request.contextPath}/assets/js/amazeui.widgets.helper.js"></script>
-        <script type="text/javascript">
-
+    <script type="text/javascript">
         $.ajax({
             type: "GET",
             dataType: "json",
             url: "${request.contextPath}/p?k=${k}&nowPage=${nowPage}&count=${count}",
-            success: function (data) {
+            success: function(data) {
                 var template = Handlebars.compile('{{>pagination}}');
                 var html = template(data);
                 $('#pagination').append(html);
             },
-            error: function () {
+            error: function() {
 
             }
         });
