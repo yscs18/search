@@ -29,64 +29,47 @@
     </header>
     <div class="am-g ">
         <div class="am-u-lg-8 am-u-lg-offset-1">
-            <div data-am-widget="list_news" class="am-list-news am-list-news-default">
-                <!--列表标题-->
-                <div class="am-list-news-hd am-cf">
-                    <h2>${k}-搜索结果</h2>
-                </div>
+            <#if webPages>
+                <div data-am-widget="list_news" class="am-list-news am-list-news-default">
+                    <!--列表标题-->
+                    <div class="am-list-news-hd am-cf">
+                        <h2>${k}-搜索结果</h2>
+                    </div>
+                    <div class="am-list-news-bd">
+                        <ul class="am-list">
 
-                <div class="am-list-news-bd">
-                    <ul class="am-list">
-                        <#if webPages>
-                        	<#list webPages as webpage>
-	                        	 <li class="am-g am-list-item-desced">
-	                            	<a href="${webpage.url}" class="am-list-item-hd ">${webpage.title}</a>
-	                            	<div class="am-list-item-text">${webpage.text}</div>
-	                       		 </li>
-                        	</#list>
-                        </#if>
-                    </ul>
-                </div>
+                            <#list webPages as webpage>
+                                <li class="am-g am-list-item-desced">
+                                    <a href="${webpage.url}" target="_blank" class="am-list-item-hd ">${webpage.title}</a>
+                                    <div class="am-list-item-text">${webpage.text}</div>
+                                </li>
+                            </#list>
 
-            </div>
+                        </ul>
+                    </div>
+                </div>
+            </#if>
         </div>
     </div>
     <div class="am-g pagination" id="pagination">
 
     </div>
 
-    <footer data-am-widget="footer" class="am-footer am-footer-default am-topbar-fixed-bottom" data-am-footer="{ }">
-        <div class="am-footer-miscs ">
-            <hr/>
-            <p>由 <a href="" title="" target="_blank" class="">西大搜索</a> 提供技术支持</p>
-            <p>CopyRight©2017 SWUSearch Inc.</p>
-            <p>-</p>
-        </div>
-    </footer>
-    <!--[if lt IE 9]>
-    <script src="http://libs.baidu.com/jquery/1.11.1/jquery.min.js"></script>
-    <script src="http://cdn.staticfile.org/modernizr/2.8.3/modernizr.js"></script>
-    <script src="${request.contextPath}/assets/js/amazeui.ie8polyfill.min.js"></script>
-    <![endif]-->
-
-    <!--[if (gte IE 9)|!(IE)]><!-->
-    <script src="${request.contextPath}/assets/js/jquery.min.js"></script>
-    <!--<![endif]-->
-    <script src="${request.contextPath}/assets/js/amazeui.min.js"></script>
+ 	<#include "/common/footer.ftl"/>
+ 	
     <script src="${request.contextPath}/assets/js/handlebars.min.js"></script>
     <script src="${request.contextPath}/assets/js/amazeui.widgets.helper.js"></script>
-        <script type="text/javascript">
-
+    <script type="text/javascript">
         $.ajax({
             type: "GET",
             dataType: "json",
             url: "${request.contextPath}/p?k=${k}&nowPage=${nowPage}&count=${count}",
-            success: function (data) {
+            success: function(data) {
                 var template = Handlebars.compile('{{>pagination}}');
                 var html = template(data);
                 $('#pagination').append(html);
             },
-            error: function () {
+            error: function() {
 
             }
         });
