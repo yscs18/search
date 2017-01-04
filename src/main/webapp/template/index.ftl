@@ -15,7 +15,7 @@
 </head>
 
 <body>
-   <div class="am-vertical-align" style="height:500px;">
+    <div class="am-vertical-align" style="height:500px;">
         <div class="am-vertical-align-middle am-g">
             <div class="header am-g">
                 <div class="am-u-lg-2 am-u-sm-4 am-u-lg-centered am-u-sm-centered am-u-md-centered">
@@ -38,24 +38,7 @@
             </div>
         </div>
     </div>
-    <div class="am-footer am-footer-default am-topbar-fixed-bottom">
-        <div class="am-footer-miscs">
-        	<hr/>
-            <p>由 <a href="" title="" target="_blank" class="">西大搜索</a> 提供技术支持</p>
-            <p>CopyRight©2017 SWUSearch Inc.</p>
-            <p>-</p>
-        </div>
-    </div>
-        <!--[if lt IE 9]>
-    <script src="http://libs.baidu.com/jquery/1.11.1/jquery.min.js"></script>
-    <script src="http://cdn.staticfile.org/modernizr/2.8.3/modernizr.js"></script>
-    <script src="assets/js/amazeui.ie8polyfill.min.js"></script>
-    <![endif]-->
-
-    <!--[if (gte IE 9)|!(IE)]><!-->
-    <script src="${request.contextPath}/assets/js/jquery.min.js"></script>
-    <!--<![endif]-->
-    <script src="${request.contextPath}/assets/js/amazeui.min.js"></script>
+    <#include "/common/footer.ftl"/>
 </body>
 
 </html>
